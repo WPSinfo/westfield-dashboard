@@ -295,7 +295,7 @@
      https://script.google.com/macros/s/AKfy.../exec
      ═══════════════════════════════════════════════════════ -->
 <script>
-  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyl08JYI6Zun83OdWMJr3pMvdEt8oTzsXTCiGPS-qZrjnFx8H1Nabnd69FGsHYfViem/exec";
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/library/d/1IKdKmnF_Q6m-HAvDq3kpPqEdGfMVzubU0GvibD2KZ0Wfq1SIKVUbJyLz/3";
   var ADMIN_PASSWORD  = "WSD2026!Ref";
 
   // ── Project & Phase Definitions ──────────────────────────
@@ -378,45 +378,42 @@
   // DATA  —  fetch & save via Apps Script
   // ════════════════════════════════════════════════════════
   function loadProgress() {
-    if (APPS_SCRIPT_URL === "https://script.google.com/macros/s/AKfycbyl08JYI6Zun83OdWMJr3pMvdEt8oTzsXTCiGPS-qZrjnFx8H1Nabnd69FGsHYfViem/exec") {
+    if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
       STATE.loading = false;
       render();
       return;
     }
-    fetch(APPS_SCRIPT_URL)
-      .then(function(r) { return r.json(); })
-      .then(function(json) {
-        if (json.ok && json.data && Object.keys(json.data).length > 0) {
-          // Merge: keep defaults for any missing keys
-          var merged = JSON.parse(JSON.stringify(DEFAULT_PROGRESS));
-          Object.keys(json.data).forEach(function(k) { merged[k] = json.data[k]; });
-          STATE.progress = merged;
-          STATE.updatedAt = json.updatedAt;
-        }
-        STATE.loading = false;
-        render();
-      })
-      .catch(function() {
-        STATE.loading = false;
-        render();
-      });
+    var script = document.createElement("script");
+    window._dashCallback = function(json) {
+      if (json.ok && json.data && Object.keys(json.data).length > 0) {
+        var merged = JSON.parse(JSON.stringify(DEFAULT_PROGRESS));
+        Object.keys(json.data).forEach(function(k) { merged[k] = json.data[k]; });
+        STATE.progress = merged;
+        STATE.updatedAt = json.updatedAt;
+      }
+      STATE.loading = false;
+      render();
+    };
+    script.src = APPS_SCRIPT_URL + "?callback=_dashCallback";
+    script.onerror = function() { STATE.loading = false; render(); };
+    document.head.appendChild(script);
   }
 
   function saveProgress(newProgress, callback) {
-    fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ progress: newProgress })
-    })
-      .then(function(r) { return r.json(); })
-      .then(function(json) {
-        if (json.ok) {
-          STATE.progress = newProgress;
-          STATE.updatedAt = json.updatedAt;
-        }
-        callback(json.ok);
-      })
-      .catch(function() { callback(false); });
+    var script = document.createElement("script");
+    var cbName = "_saveCb_" + Date.now();
+    window[cbName] = function(json) {
+      delete window[cbName];
+      if (json.ok) {
+        STATE.progress = newProgress;
+        STATE.updatedAt = json.updatedAt || new Date().toISOString();
+      }
+      callback(json.ok);
+    };
+    var encoded = encodeURIComponent(JSON.stringify(newProgress));
+    script.src = APPS_SCRIPT_URL + "?action=save&data=" + encoded + "&callback=" + cbName;
+    script.onerror = function() { delete window[cbName]; callback(false); };
+    document.head.appendChild(script);
   }
 
   // ════════════════════════════════════════════════════════
