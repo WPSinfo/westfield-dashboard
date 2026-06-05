@@ -5,138 +5,45 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Westfield Schools — 2025 Referendum Summer Projects</title>
 <style>
-  /* ── Reset & Base ── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background: #f1f5f9;
-    color: #1e293b;
-    min-height: 100vh;
-  }
-
-  /* ── Header ── */
-  .header {
-    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%);
-    padding: 28px 24px 24px;
-    position: relative;
-    overflow: hidden;
-  }
-  .header::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.04);
-  }
-  .header::after {
-    content: '';
-    position: absolute;
-    bottom: -60px; left: 30%;
-    width: 160px; height: 160px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.03);
-  }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f1f5f9; color: #1e293b; min-height: 100vh; }
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%); padding: 28px 24px 24px; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; top: -40px; right: -40px; width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.04); }
+  .header::after { content: ''; position: absolute; bottom: -60px; left: 30%; width: 160px; height: 160px; border-radius: 50%; background: rgba(255,255,255,0.03); }
   .header-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 1; }
   .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
   .header-label { font-size: 13px; color: #93c5fd; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 6px; }
   .header-title { color: #fff; font-size: 26px; font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; }
   .header-title span { color: #93c5fd; }
   .header-updated { color: #93c5fd; font-size: 11px; margin-top: 8px; opacity: 0.85; }
-
-  .admin-btn {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 8px;
-    color: #fff;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    backdrop-filter: blur(4px);
-    transition: background 0.2s;
-    white-space: nowrap;
-    align-self: flex-start;
-  }
+  .admin-btn { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; color: #fff; padding: 8px 16px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px; backdrop-filter: blur(4px); transition: background 0.2s; white-space: nowrap; align-self: flex-start; }
   .admin-btn:hover { background: rgba(255,255,255,0.2); }
-
-  /* ── Stats Bar ── */
   .stats-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin-top: 24px; }
-  .stat-card {
-    background: rgba(255,255,255,0.08);
-    border-radius: 12px;
-    padding: 14px 18px;
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(255,255,255,0.12);
-  }
+  .stat-card { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 18px; backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); }
   .stat-value { font-size: 26px; font-weight: 900; line-height: 1; }
   .stat-label { font-size: 12px; color: #e2e8f0; font-weight: 600; margin-top: 4px; }
-  .stat-sub   { font-size: 10px; color: #93c5fd; margin-top: 2px; }
-
-  /* ── Project Grid ── */
-  .projects-grid {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 28px 16px;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
-  }
-
-  /* ── Project Card ── */
-  .project-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 24px 28px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
+  .stat-sub { font-size: 10px; color: #93c5fd; margin-top: 2px; }
+  .projects-grid { max-width: 1100px; margin: 0 auto; padding: 28px 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+  .project-card { background: #fff; border-radius: 16px; padding: 24px 28px; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06); display: flex; flex-direction: column; gap: 16px; }
   .card-header { display: flex; align-items: flex-start; justify-content: space-between; }
   .card-icon-wrap { display: flex; align-items: center; gap: 12px; }
-  .card-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; flex-shrink: 0;
-  }
+  .card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
   .card-title { font-weight: 800; font-size: 16px; color: #1e293b; line-height: 1.2; }
   .card-school { font-size: 12px; color: #64748b; margin-top: 2px; }
   .card-pct-wrap { text-align: right; flex-shrink: 0; }
   .card-pct { font-size: 26px; font-weight: 900; line-height: 1; }
   .card-pct-sub { font-size: 11px; color: #64748b; margin-top: 2px; }
-
-  /* ── Progress Bar ── */
   .progress-track { height: 6px; background: #e2e8f0; border-radius: 3px; overflow: hidden; }
-  .progress-fill  { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
-
-  /* ── Phase Rows ── */
+  .progress-fill { height: 100%; border-radius: 3px; transition: width 0.6s cubic-bezier(.4,0,.2,1); }
   .phases { display: flex; flex-direction: column; gap: 8px; }
-  .phase-row {
-    display: flex; align-items: center; gap: 10px;
-    padding: 8px 12px; background: #f8fafc; border-radius: 8px;
-    border-left: 3px solid #e2e8f0;
-  }
-  .phase-row.complete   { border-left-color: var(--project-color, #10b981); }
-  .phase-row.in_progress{ border-left-color: #f59e0b; }
-  .phase-row.on_hold    { border-left-color: #ef4444; }
+  .phase-row { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: #f8fafc; border-radius: 8px; border-left: 3px solid #e2e8f0; }
   .phase-content { flex: 1; min-width: 0; }
   .phase-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
   .phase-name { font-size: 13px; font-weight: 600; color: #374151; }
   .phase-dates { font-size: 11px; color: #94a3b8; }
   .phase-note { font-size: 11px; color: #64748b; font-style: italic; margin-top: 4px; }
   .phase-pct-label { font-size: 11px; font-weight: 700; color: #f59e0b; min-width: 32px; text-align: right; }
-
-  /* ── Status Badge ── */
-  .badge {
-    display: inline-flex; align-items: center; gap: 4px;
-    padding: 2px 10px; border-radius: 20px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.05em;
-    text-transform: uppercase; white-space: nowrap;
-  }
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 2px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; white-space: nowrap; }
   .badge-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
   .badge-not_started  { background:#94a3b822; color:#94a3b8; border:1px solid #94a3b844; }
   .badge-dot-not_started { background:#94a3b8; }
@@ -146,138 +53,49 @@
   .badge-dot-complete { background:#10b981; }
   .badge-on_hold      { background:#ef444422; color:#ef4444; border:1px solid #ef444444; }
   .badge-dot-on_hold  { background:#ef4444; }
-
-  /* ── Footer ── */
   .footer { text-align: center; padding: 16px 24px 32px; color: #94a3b8; font-size: 11px; }
-
-  /* ── Loading ── */
-  .loading {
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    flex-direction: column; gap: 12px; color: #64748b; font-size: 14px;
-  }
+  .loading { min-height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 12px; color: #64748b; font-size: 14px; }
   .loading-icon { font-size: 36px; }
-  .spinner {
-    width: 28px; height: 28px;
-    border: 3px solid #e2e8f0;
-    border-top-color: #2d5a8e;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-  }
+  .spinner { width: 28px; height: 28px; border: 3px solid #e2e8f0; border-top-color: #2d5a8e; border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
-
-  /* ── Overlay / Modal ── */
-  .overlay {
-    position: fixed; inset: 0;
-    background: rgba(15,23,42,0.7);
-    backdrop-filter: blur(4px);
-    z-index: 1000;
-    display: flex; align-items: center; justify-content: center;
-    padding: 24px 16px;
-  }
+  .overlay { position: fixed; inset: 0; background: rgba(15,23,42,0.7); backdrop-filter: blur(4px); z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px 16px; }
   .overlay-scroll { overflow-y: auto; align-items: flex-start; }
-
-  /* Login modal */
-  .login-box {
-    background: #fff; border-radius: 16px;
-    padding: 32px 36px; width: 100%; max-width: 340px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
-    text-align: center;
-  }
+  .login-box { background: #fff; border-radius: 16px; padding: 32px 36px; width: 100%; max-width: 340px; box-shadow: 0 20px 60px rgba(0,0,0,0.25); text-align: center; }
   .login-icon { font-size: 36px; margin-bottom: 12px; }
   .login-title { font-weight: 800; font-size: 18px; color: #1e293b; margin-bottom: 4px; }
   .login-sub { font-size: 13px; color: #64748b; margin-bottom: 20px; }
-  .login-input {
-    width: 100%; border: 2px solid #e2e8f0; border-radius: 8px;
-    padding: 10px 14px; font-size: 14px; color: #1e293b;
-    margin-bottom: 12px; outline: none;
-    transition: border-color 0.2s;
-  }
+  .login-input { width: 100%; border: 2px solid #e2e8f0; border-radius: 8px; padding: 10px 14px; font-size: 14px; color: #1e293b; margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
   .login-input:focus { border-color: #2d5a8e; }
   .login-input.error { border-color: #ef4444; }
   .login-error { font-size: 12px; color: #ef4444; margin-bottom: 8px; }
   .btn-row { display: flex; gap: 10px; }
-  .btn {
-    flex: 1; padding: 10px; border-radius: 8px;
-    font-size: 13px; font-weight: 600; cursor: pointer;
-    border: none; transition: opacity 0.2s;
-  }
+  .btn { flex: 1; padding: 10px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; transition: opacity 0.2s; }
   .btn:hover { opacity: 0.85; }
-  .btn-secondary { border: 1px solid #e2e8f0; background: #fff; color: #64748b; }
+  .btn-secondary { border: 1px solid #e2e8f0 !important; background: #fff; color: #64748b; }
   .btn-primary { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%); color: #fff; }
   .btn-success { background: #10b981; color: #fff; }
   .btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-  /* Admin panel */
-  .admin-box {
-    background: #fff; border-radius: 20px;
-    width: 100%; max-width: 800px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-    overflow: hidden;
-  }
-  .admin-header {
-    background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%);
-    padding: 20px 28px;
-    display: flex; align-items: center; justify-content: space-between;
-  }
+  .admin-box { background: #fff; border-radius: 20px; width: 100%; max-width: 800px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden; }
+  .admin-header { background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8e 100%); padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; }
   .admin-header-title { color: #fff; font-weight: 800; font-size: 18px; }
   .admin-header-sub { color: #93c5fd; font-size: 12px; margin-top: 2px; }
-  .close-btn {
-    background: rgba(255,255,255,0.15); border: none; border-radius: 8px;
-    color: #fff; width: 36px; height: 36px; cursor: pointer;
-    font-size: 18px; display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-  }
-  .close-btn:hover { background: rgba(255,255,255,0.25); }
-  .admin-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 28px; }
-  .admin-project-header {
-    display: flex; align-items: center; gap: 10px;
-    margin-bottom: 12px; padding-bottom: 10px;
-  }
+  .close-btn { background: rgba(255,255,255,0.15); border: none; border-radius: 8px; color: #fff; width: 36px; height: 36px; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; }
+  .admin-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 28px; max-height: 65vh; overflow-y: auto; }
+  .admin-project-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding-bottom: 10px; }
   .admin-project-title { font-weight: 800; color: #1e293b; font-size: 15px; }
   .admin-project-school { font-size: 11px; color: #64748b; }
   .admin-phases { display: flex; flex-direction: column; gap: 10px; }
-  .admin-phase-row {
-    background: #f8fafc; border-radius: 10px; padding: 12px 16px;
-    display: grid; grid-template-columns: 120px 1fr 1fr;
-    gap: 12px; align-items: center;
-  }
+  .admin-phase-row { background: #f8fafc; border-radius: 10px; padding: 12px 16px; display: grid; grid-template-columns: 120px 1fr 1fr; gap: 12px; align-items: center; }
   .admin-phase-name { font-size: 13px; font-weight: 700; color: #374151; }
   .admin-phase-dates { font-size: 10px; color: #94a3b8; margin-top: 2px; }
   .admin-controls { display: flex; flex-direction: column; gap: 6px; }
-  .admin-select {
-    border: 1px solid #e2e8f0; border-radius: 6px;
-    padding: 5px 8px; font-size: 12px; background: #fff;
-    color: #374151; cursor: pointer; width: 100%;
-  }
+  .admin-select { border: 1px solid #e2e8f0; border-radius: 6px; padding: 5px 8px; font-size: 12px; background: #fff; color: #374151; cursor: pointer; width: 100%; }
   .pct-row { display: flex; align-items: center; gap: 6px; }
   .pct-slider { flex: 1; accent-color: #2d5a8e; }
   .pct-val { font-size: 12px; font-weight: 700; min-width: 32px; }
-  .admin-note {
-    border: 1px solid #e2e8f0; border-radius: 6px;
-    padding: 6px 10px; font-size: 12px; color: #374151;
-    background: #fff; width: 100%; font-family: inherit;
-  }
-  .admin-footer {
-    padding: 16px 28px; background: #f8fafc;
-    border-top: 1px solid #e2e8f0;
-    display: flex; justify-content: flex-end; gap: 12px;
-    align-items: center;
-  }
+  .admin-note { border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px; font-size: 12px; color: #374151; background: #fff; width: 100%; font-family: inherit; }
+  .admin-footer { padding: 16px 28px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: flex-end; gap: 12px; align-items: center; }
   .save-status { font-size: 12px; color: #64748b; }
-
-  /* ── Setup Notice (shown until script URL configured) ── */
-  .setup-banner {
-    background: #fef3c7; border: 1px solid #fcd34d;
-    border-radius: 10px; padding: 14px 18px; margin: 20px 16px 0;
-    max-width: 1100px; margin-left: auto; margin-right: auto;
-    font-size: 13px; color: #78350f; line-height: 1.6;
-  }
-  .setup-banner strong { font-weight: 700; }
-  .setup-banner code {
-    background: #fde68a; padding: 1px 6px; border-radius: 4px;
-    font-family: monospace; font-size: 12px;
-  }
-
   @media (max-width: 600px) {
     .stats-grid { grid-template-columns: 1fr 1fr; }
     .stats-grid > :last-child { grid-column: 1 / -1; }
@@ -287,138 +105,112 @@
 </style>
 </head>
 <body>
-
-<!-- ═══════════════════════════════════════════════════════
-     STEP 1 OF SETUP: Replace the placeholder below with
-     your Apps Script Web App URL after deploying.
-     It looks like:
-     https://script.google.com/macros/s/AKfy.../exec
-     ═══════════════════════════════════════════════════════ -->
 <script>
-  var APPS_SCRIPT_URL = "https://script.google.com/macros/library/d/1IKdKmnF_Q6m-HAvDq3kpPqEdGfMVzubU0GvibD2KZ0Wfq1SIKVUbJyLz/3";
+  // ── CONFIGURATION ─────────────────────────────────────────
+  // Replace YOUR_APPS_SCRIPT_URL_HERE with your deployed Apps Script URL
+  var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyl08JYI6Zun83OdWMJr3pMvdEt8oTzsXTCiGPS-qZrjnFx8H1Nabnd69FGsHYfViem/exec";
   var ADMIN_PASSWORD  = "WSD2026!Ref";
 
-  // ── Project & Phase Definitions ──────────────────────────
+  // ── Project definitions ───────────────────────────────────
   var PROJECTS = [
-    {
-      id: "playgrounds", name: "Playground Renovation",
-      schools: "Washington Elementary", color: "#2d7dd2", icon: "🏫",
-      phases: [
-        { id: "design",       label: "Design",       start: "Sep 2025", end: "Jan 2026" },
-        { id: "bid",          label: "Bid",           start: "Jan 2026", end: "Feb 2026" },
-        { id: "award",        label: "Award",         start: "Mar 2026", end: "Mar 2026" },
-        { id: "construction", label: "Construction",  start: "Jun 2026", end: "Aug 2026" }
-      ]
-    },
-    {
-      id: "hvac", name: "HVAC Unit Relocation",
-      schools: "Franklin Elementary", color: "#e07a1f", icon: "🌬️",
-      phases: [
-        { id: "design",       label: "Design",       start: "Sep 2025", end: "Dec 2025" },
-        { id: "bid",          label: "Bid",           start: "Mar 2026", end: "Apr 2026" },
-        { id: "award",        label: "Award",         start: "Apr 2026", end: "Apr 2026" },
-        { id: "construction", label: "Construction",  start: "Jun 2026", end: "Aug 2026" }
-      ]
-    },
-    {
-      id: "driveloop", name: "Drive Loop & Canopy",
-      schools: "Franklin Elementary", color: "#7b4ea6", icon: "🚗",
-      phases: [
-        { id: "design",       label: "Design",       start: "Sep 2025", end: "Dec 2025" },
-        { id: "bid",          label: "Bid",           start: "Mar 2026", end: "Apr 2026" },
-        { id: "award",        label: "Award",         start: "Apr 2026", end: "Apr 2026" },
-        { id: "construction", label: "Construction",  start: "Jun 2026", end: "Aug 2026" }
-      ]
-    },
-    {
-      id: "restrooms", name: "Restroom Renovations",
-      schools: "Tamaques, Wilson & WHS", color: "#c0392b", icon: "🚻",
-      phases: [
-        { id: "design",       label: "Design",       start: "Sep 2025", end: "Dec 2025" },
-        { id: "bid",          label: "Bid",           start: "Feb 2026", end: "Mar 2026" },
-        { id: "award",        label: "Award",         start: "Mar 2026", end: "Mar 2026" },
-        { id: "construction", label: "Construction",  start: "Jun 2026", end: "Aug 2026" }
-      ]
-    },
-    {
-      id: "commons", name: "Learning Commons",
-      schools: "Edison & Roosevelt", color: "#16a085", icon: "📚",
-      phases: [
-        { id: "design",       label: "Design",       start: "Sep 2025", end: "Dec 2025" },
-        { id: "bid",          label: "Bid",           start: "Feb 2026", end: "Mar 2026" },
-        { id: "award",        label: "Award",         start: "Mar 2026", end: "Mar 2026" },
-        { id: "construction", label: "Construction",  start: "Jun 2026", end: "Aug 2026" }
-      ]
-    }
+    { id:"playgrounds", name:"Playground Renovation",   schools:"Washington Elementary",   color:"#2d7dd2", icon:"🏫",
+      phases:[{id:"design",label:"Design",start:"Sep 2025",end:"Jan 2026"},{id:"bid",label:"Bid",start:"Jan 2026",end:"Feb 2026"},{id:"award",label:"Award",start:"Mar 2026",end:"Mar 2026"},{id:"construction",label:"Construction",start:"Jun 2026",end:"Aug 2026"}]},
+    { id:"hvac",        name:"HVAC Unit Relocation",    schools:"Franklin Elementary",      color:"#e07a1f", icon:"🌬️",
+      phases:[{id:"design",label:"Design",start:"Sep 2025",end:"Dec 2025"},{id:"bid",label:"Bid",start:"Mar 2026",end:"Apr 2026"},{id:"award",label:"Award",start:"Apr 2026",end:"Apr 2026"},{id:"construction",label:"Construction",start:"Jun 2026",end:"Aug 2026"}]},
+    { id:"driveloop",   name:"Drive Loop & Canopy",     schools:"Franklin Elementary",      color:"#7b4ea6", icon:"🚗",
+      phases:[{id:"design",label:"Design",start:"Sep 2025",end:"Dec 2025"},{id:"bid",label:"Bid",start:"Mar 2026",end:"Apr 2026"},{id:"award",label:"Award",start:"Apr 2026",end:"Apr 2026"},{id:"construction",label:"Construction",start:"Jun 2026",end:"Aug 2026"}]},
+    { id:"restrooms",   name:"Restroom Renovations",    schools:"Tamaques, Wilson & WHS",   color:"#c0392b", icon:"🚻",
+      phases:[{id:"design",label:"Design",start:"Sep 2025",end:"Dec 2025"},{id:"bid",label:"Bid",start:"Feb 2026",end:"Mar 2026"},{id:"award",label:"Award",start:"Mar 2026",end:"Mar 2026"},{id:"construction",label:"Construction",start:"Jun 2026",end:"Aug 2026"}]},
+    { id:"commons",     name:"Learning Commons",        schools:"Edison & Roosevelt",        color:"#16a085", icon:"📚",
+      phases:[{id:"design",label:"Design",start:"Sep 2025",end:"Dec 2025"},{id:"bid",label:"Bid",start:"Feb 2026",end:"Mar 2026"},{id:"award",label:"Award",start:"Mar 2026",end:"Mar 2026"},{id:"construction",label:"Construction",start:"Jun 2026",end:"Aug 2026"}]}
   ];
 
-  // ── Default / fallback state ──────────────────────────────
+  var STATUSES = {
+    not_started: { label:"Not Started", color:"#94a3b8" },
+    in_progress:  { label:"In Progress", color:"#f59e0b" },
+    complete:     { label:"Complete",    color:"#10b981" },
+    on_hold:      { label:"On Hold",     color:"#ef4444" }
+  };
+
   var DEFAULT_PROGRESS = {};
   PROJECTS.forEach(function(p) {
     p.phases.forEach(function(ph) {
-      DEFAULT_PROGRESS[p.id + "_" + ph.id] = { status: "not_started", pct: 0, note: "" };
+      DEFAULT_PROGRESS[p.id+"_"+ph.id] = { status:"not_started", pct:0, note:"" };
     });
   });
 
-  var STATE = {
-    progress: JSON.parse(JSON.stringify(DEFAULT_PROGRESS)),
-    updatedAt: null,
-    loading: true
-  };
+  var STATE = { progress: JSON.parse(JSON.stringify(DEFAULT_PROGRESS)), updatedAt: null, loading: true };
+  var adminDraft = {};
 
-  // ── Status display config ─────────────────────────────────
-  var STATUSES = {
-    not_started: { label: "Not Started", color: "#94a3b8" },
-    in_progress:  { label: "In Progress", color: "#f59e0b" },
-    complete:     { label: "Complete",    color: "#10b981" },
-    on_hold:      { label: "On Hold",     color: "#ef4444" }
-  };
-
-  // ════════════════════════════════════════════════════════
-  // DATA  —  fetch & save via Apps Script
-  // ════════════════════════════════════════════════════════
+  // ── Data layer ────────────────────────────────────────────
   function loadProgress() {
     if (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE") {
-      STATE.loading = false;
-      render();
-      return;
+      STATE.loading = false; render(); return;
     }
-    var script = document.createElement("script");
-    window._dashCallback = function(json) {
-      if (json.ok && json.data && Object.keys(json.data).length > 0) {
+    jsonp(APPS_SCRIPT_URL, {}, "_loadCb", function(json) {
+      if (json && json.ok && json.data && Object.keys(json.data).length > 0) {
         var merged = JSON.parse(JSON.stringify(DEFAULT_PROGRESS));
         Object.keys(json.data).forEach(function(k) { merged[k] = json.data[k]; });
         STATE.progress = merged;
         STATE.updatedAt = json.updatedAt;
       }
-      STATE.loading = false;
-      render();
-    };
-    script.src = APPS_SCRIPT_URL + "?callback=_dashCallback";
-    script.onerror = function() { STATE.loading = false; render(); };
-    document.head.appendChild(script);
+      STATE.loading = false; render();
+    }, function() { STATE.loading = false; render(); });
   }
 
   function saveProgress(newProgress, callback) {
-    var script = document.createElement("script");
-    var cbName = "_saveCb_" + Date.now();
-    window[cbName] = function(json) {
-      delete window[cbName];
-      if (json.ok) {
+    // Save one row at a time to keep URLs short
+    var keys = Object.keys(newProgress);
+    var index = 0;
+    var timestamp = new Date().toISOString();
+
+    function saveNext() {
+      if (index >= keys.length) {
         STATE.progress = newProgress;
-        STATE.updatedAt = json.updatedAt || new Date().toISOString();
+        STATE.updatedAt = timestamp;
+        callback(true);
+        return;
       }
-      callback(json.ok);
-    };
-    var encoded = encodeURIComponent(JSON.stringify(newProgress));
-    script.src = APPS_SCRIPT_URL + "?action=save&data=" + encoded + "&callback=" + cbName;
-    script.onerror = function() { delete window[cbName]; callback(false); };
-    document.head.appendChild(script);
+      var k = keys[index];
+      var d = newProgress[k];
+      var params = {
+        action: "saverow",
+        key:    k,
+        status: d.status || "not_started",
+        pct:    String(d.pct || 0),
+        note:   d.note || "",
+        ts:     timestamp
+      };
+      index++;
+      jsonp(APPS_SCRIPT_URL, params, "_saveCb_" + index, function(json) {
+        if (json && json.ok) {
+          saveNext();
+        } else {
+          callback(false);
+        }
+      }, function() { callback(false); });
+    }
+    saveNext();
   }
 
-  // ════════════════════════════════════════════════════════
-  // RENDER
-  // ════════════════════════════════════════════════════════
+  // Generic JSONP helper
+  function jsonp(url, params, cbName, onSuccess, onError) {
+    var fullCb = cbName + "_" + Date.now();
+    window[fullCb] = function(data) {
+      delete window[fullCb];
+      onSuccess(data);
+    };
+    var qs = "callback=" + fullCb;
+    Object.keys(params).forEach(function(k) {
+      qs += "&" + encodeURIComponent(k) + "=" + encodeURIComponent(params[k]);
+    });
+    var s = document.createElement("script");
+    s.src = url + "?" + qs;
+    s.onerror = function() { delete window[fullCb]; onError && onError(); };
+    document.head.appendChild(s);
+  }
+
+  // ── Rendering ─────────────────────────────────────────────
   function render() {
     document.getElementById("app").innerHTML = buildApp();
     attachEvents();
@@ -428,370 +220,207 @@
     if (STATE.loading) {
       return '<div class="loading"><div class="loading-icon">🏫</div><div class="spinner"></div><div>Loading dashboard…</div></div>';
     }
-
-    var totalPhases = 0, completedPhases = 0, inProgressPhases = 0;
+    var totalPhases=0, completedPhases=0, inProgressPhases=0;
     PROJECTS.forEach(function(p) {
       p.phases.forEach(function(ph) {
         totalPhases++;
-        var s = STATE.progress[p.id + "_" + ph.id];
-        if (s && s.status === "complete")    completedPhases++;
-        if (s && s.status === "in_progress") inProgressPhases++;
+        var s=(STATE.progress[p.id+"_"+ph.id]||{}).status;
+        if(s==="complete") completedPhases++;
+        if(s==="in_progress") inProgressPhases++;
       });
     });
-    var overallPct = Math.round((completedPhases / totalPhases) * 100);
-
-    var setupBanner = (APPS_SCRIPT_URL === "YOUR_APPS_SCRIPT_URL_HERE")
-      ? '<div class="setup-banner">⚠️ <strong>Setup needed:</strong> Open this HTML file in a text editor and replace <code>YOUR_APPS_SCRIPT_URL_HERE</code> with your deployed Apps Script URL. See the included <code>SETUP_INSTRUCTIONS.txt</code> file.</div>'
-      : "";
-
+    var overallPct = Math.round((completedPhases/totalPhases)*100);
     return [
-      '<div class="header">',
-        '<div class="header-inner">',
-          '<div class="header-top">',
-            '<div>',
-              '<div class="header-label">Westfield Public Schools</div>',
-              '<h1 class="header-title">2025 Referendum<br><span>Summer 2026 Projects</span></h1>',
-              STATE.updatedAt
-                ? '<div class="header-updated">Last updated: ' + formatDate(STATE.updatedAt) + '</div>'
-                : '',
-            '</div>',
-            '<button class="admin-btn" id="openLoginBtn">🔐 Admin</button>',
+      '<div class="header"><div class="header-inner">',
+        '<div class="header-top">',
+          '<div>',
+            '<div class="header-label">Westfield Public Schools</div>',
+            '<h1 class="header-title">2025 Referendum<br><span>Summer 2026 Projects</span></h1>',
+            STATE.updatedAt ? '<div class="header-updated">Last updated: '+formatDate(STATE.updatedAt)+'</div>' : '',
           '</div>',
-          '<div class="stats-grid">',
-            statCard(overallPct + "%", "Overall Progress", completedPhases + " of " + totalPhases + " phases complete", "#34d399"),
-            statCard(inProgressPhases, "In Progress", "phases currently active", "#fbbf24"),
-            statCard(PROJECTS.length, "Projects", "across all schools", "#60a5fa"),
-          '</div>',
+          '<button class="admin-btn" id="openLoginBtn">🔐 Admin</button>',
         '</div>',
-      '</div>',
-      setupBanner,
-      '<div class="projects-grid">',
-        PROJECTS.map(buildProjectCard).join(""),
-      '</div>',
+        '<div class="stats-grid">',
+          statCard(overallPct+"%","Overall Progress",completedPhases+" of "+totalPhases+" phases complete","#34d399"),
+          statCard(inProgressPhases,"In Progress","phases currently active","#fbbf24"),
+          statCard(PROJECTS.length,"Projects","across all schools","#60a5fa"),
+        '</div>',
+      '</div></div>',
+      '<div class="projects-grid">',PROJECTS.map(buildProjectCard).join(""),'</div>',
       '<div class="footer">Westfield Public School District · 2025 Referendum Program</div>',
-      buildLoginModal(),
-      buildAdminPanel()
+      buildLoginModal(), buildAdminPanel()
     ].join("");
   }
 
-  function statCard(value, label, sub, color) {
-    return [
-      '<div class="stat-card">',
-        '<div class="stat-value" style="color:' + color + '">' + value + '</div>',
-        '<div class="stat-label">' + label + '</div>',
-        '<div class="stat-sub">' + sub + '</div>',
-      '</div>'
-    ].join("");
+  function statCard(value,label,sub,color) {
+    return '<div class="stat-card"><div class="stat-value" style="color:'+color+'">'+value+'</div><div class="stat-label">'+label+'</div><div class="stat-sub">'+sub+'</div></div>';
   }
 
   function buildProjectCard(project) {
-    var completed = 0;
-    project.phases.forEach(function(ph) {
-      if ((STATE.progress[project.id + "_" + ph.id] || {}).status === "complete") completed++;
+    var completed=0;
+    project.phases.forEach(function(ph){
+      if((STATE.progress[project.id+"_"+ph.id]||{}).status==="complete") completed++;
     });
-    var pct = Math.round((completed / project.phases.length) * 100);
-
-    var phasesHtml = project.phases.map(function(ph) {
-      var key = project.id + "_" + ph.id;
-      var d = STATE.progress[key] || { status: "not_started", pct: 0, note: "" };
-      var borderColor = d.status === "complete" ? project.color
-                      : d.status === "in_progress" ? "#f59e0b"
-                      : d.status === "on_hold"     ? "#ef4444"
-                      : "#e2e8f0";
-      return [
-        '<div class="phase-row ' + d.status + '" style="border-left-color:' + borderColor + '">',
-          '<div class="phase-content">',
-            '<div class="phase-top">',
-              '<span class="phase-name">' + ph.label + '</span>',
-              badge(d.status),
-            '</div>',
-            '<div class="phase-dates">' + ph.start + ' → ' + ph.end + '</div>',
-            d.note ? '<div class="phase-note">' + escHtml(d.note) + '</div>' : '',
-          '</div>',
-          d.status === "in_progress" ? '<div class="phase-pct-label">' + d.pct + '%</div>' : '',
-        '</div>'
-      ].join("");
+    var pct=Math.round((completed/project.phases.length)*100);
+    var phasesHtml=project.phases.map(function(ph){
+      var key=project.id+"_"+ph.id;
+      var d=STATE.progress[key]||{status:"not_started",pct:0,note:""};
+      var bc=d.status==="complete"?project.color:d.status==="in_progress"?"#f59e0b":d.status==="on_hold"?"#ef4444":"#e2e8f0";
+      return '<div class="phase-row" style="border-left-color:'+bc+'">'+
+        '<div class="phase-content">'+
+          '<div class="phase-top"><span class="phase-name">'+ph.label+'</span>'+badge(d.status)+'</div>'+
+          '<div class="phase-dates">'+ph.start+' → '+ph.end+'</div>'+
+          (d.note?'<div class="phase-note">'+esc(d.note)+'</div>':'')+
+        '</div>'+
+        (d.status==="in_progress"?'<div class="phase-pct-label">'+d.pct+'%</div>':'')+
+      '</div>';
     }).join("");
-
-    return [
-      '<div class="project-card" style="border-top:4px solid ' + project.color + '">',
-        '<div class="card-header">',
-          '<div class="card-icon-wrap">',
-            '<div class="card-icon" style="background:' + project.color + '18">' + project.icon + '</div>',
-            '<div>',
-              '<div class="card-title">' + project.name + '</div>',
-              '<div class="card-school">' + project.schools + '</div>',
-            '</div>',
-          '</div>',
-          '<div class="card-pct-wrap">',
-            '<div class="card-pct" style="color:' + project.color + '">' + pct + '%</div>',
-            '<div class="card-pct-sub">' + completed + '/' + project.phases.length + ' phases</div>',
-          '</div>',
-        '</div>',
-        '<div class="progress-track"><div class="progress-fill" style="width:' + pct + '%;background:' + project.color + '"></div></div>',
-        '<div class="phases">' + phasesHtml + '</div>',
-      '</div>'
-    ].join("");
+    return '<div class="project-card" style="border-top:4px solid '+project.color+'">'+
+      '<div class="card-header">'+
+        '<div class="card-icon-wrap">'+
+          '<div class="card-icon" style="background:'+project.color+'18">'+project.icon+'</div>'+
+          '<div><div class="card-title">'+project.name+'</div><div class="card-school">'+project.schools+'</div></div>'+
+        '</div>'+
+        '<div class="card-pct-wrap"><div class="card-pct" style="color:'+project.color+'">'+pct+'%</div><div class="card-pct-sub">'+completed+'/'+project.phases.length+' phases</div></div>'+
+      '</div>'+
+      '<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%;background:'+project.color+'"></div></div>'+
+      '<div class="phases">'+phasesHtml+'</div>'+
+    '</div>';
   }
 
   function badge(status) {
-    var s = STATUSES[status] || STATUSES.not_started;
-    return '<span class="badge badge-' + status + '"><span class="badge-dot badge-dot-' + status + '"></span>' + s.label + '</span>';
+    var s=STATUSES[status]||STATUSES.not_started;
+    return '<span class="badge badge-'+status+'"><span class="badge-dot badge-dot-'+status+'"></span>'+s.label+'</span>';
   }
 
-  // ── Login Modal ─────────────────────────────────────────
   function buildLoginModal() {
-    return [
-      '<div class="overlay" id="loginOverlay" style="display:none">',
-        '<div class="login-box">',
-          '<div class="login-icon">🔐</div>',
-          '<div class="login-title">Admin Access</div>',
-          '<div class="login-sub">Enter the admin password to update project progress.</div>',
-          '<input class="login-input" type="password" id="loginPwInput" placeholder="Password" />',
-          '<div class="login-error" id="loginError" style="display:none">Incorrect password. Please try again.</div>',
-          '<div class="btn-row">',
-            '<button class="btn btn-secondary" id="loginCancelBtn">Cancel</button>',
-            '<button class="btn btn-primary" id="loginSubmitBtn">Login</button>',
-          '</div>',
-        '</div>',
-      '</div>'
-    ].join("");
+    return '<div class="overlay" id="loginOverlay" style="display:none">'+
+      '<div class="login-box">'+
+        '<div class="login-icon">🔐</div>'+
+        '<div class="login-title">Admin Access</div>'+
+        '<div class="login-sub">Enter the admin password to update project progress.</div>'+
+        '<input class="login-input" type="password" id="loginPwInput" placeholder="Password" />'+
+        '<div class="login-error" id="loginError" style="display:none">Incorrect password. Please try again.</div>'+
+        '<div class="btn-row">'+
+          '<button class="btn btn-secondary" id="loginCancelBtn">Cancel</button>'+
+          '<button class="btn btn-primary" id="loginSubmitBtn">Login</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
   }
 
-  // ── Admin Panel ─────────────────────────────────────────
   function buildAdminPanel() {
-    var projectsHtml = PROJECTS.map(function(project) {
-      var phasesHtml = project.phases.map(function(ph) {
-        var key = project.id + "_" + ph.id;
-        var d = STATE.progress[key] || { status: "not_started", pct: 0, note: "" };
-        var selectOpts = Object.keys(STATUSES).map(function(v) {
-          return '<option value="' + v + '"' + (d.status === v ? " selected" : "") + '>' + STATUSES[v].label + '</option>';
+    var projectsHtml=PROJECTS.map(function(project){
+      var phasesHtml=project.phases.map(function(ph){
+        var key=project.id+"_"+ph.id;
+        var d=STATE.progress[key]||{status:"not_started",pct:0,note:""};
+        var opts=Object.keys(STATUSES).map(function(v){
+          return '<option value="'+v+'"'+(d.status===v?" selected":"")+'>'+STATUSES[v].label+'</option>';
         }).join("");
-        return [
-          '<div class="admin-phase-row" style="border-left:3px solid ' + project.color + '44">',
-            '<div>',
-              '<div class="admin-phase-name">' + ph.label + '</div>',
-              '<div class="admin-phase-dates">' + ph.start + ' → ' + ph.end + '</div>',
-            '</div>',
-            '<div class="admin-controls">',
-              '<select class="admin-select" data-key="' + key + '" data-field="status">' + selectOpts + '</select>',
-              '<div class="pct-row" id="pctRow_' + key + '" style="display:' + (d.status === "in_progress" ? "flex" : "none") + '">',
-                '<input type="range" class="pct-slider" min="0" max="100" value="' + d.pct + '" data-key="' + key + '" data-field="pct" />',
-                '<span class="pct-val" id="pctVal_' + key + '" style="color:' + project.color + '">' + d.pct + '%</span>',
-              '</div>',
-            '</div>',
-            '<input type="text" class="admin-note" placeholder="Add a note (optional)…" value="' + escHtml(d.note) + '" data-key="' + key + '" data-field="note" />',
-          '</div>'
-        ].join("");
+        return '<div class="admin-phase-row" style="border-left:3px solid '+project.color+'44">'+
+          '<div><div class="admin-phase-name">'+ph.label+'</div><div class="admin-phase-dates">'+ph.start+' → '+ph.end+'</div></div>'+
+          '<div class="admin-controls">'+
+            '<select class="admin-select" data-key="'+key+'" data-field="status">'+opts+'</select>'+
+            '<div class="pct-row" id="pctRow_'+key+'" style="display:'+(d.status==="in_progress"?"flex":"none")+'">'+
+              '<input type="range" class="pct-slider" min="0" max="100" value="'+d.pct+'" data-key="'+key+'" data-field="pct" />'+
+              '<span class="pct-val" id="pctVal_'+key+'" style="color:'+project.color+'">'+d.pct+'%</span>'+
+            '</div>'+
+          '</div>'+
+          '<input type="text" class="admin-note" placeholder="Add a note (optional)…" value="'+esc(d.note)+'" data-key="'+key+'" data-field="note" />'+
+        '</div>';
       }).join("");
-
-      return [
-        '<div>',
-          '<div class="admin-project-header" style="border-bottom:2px solid ' + project.color + '">',
-            '<span style="font-size:18px">' + project.icon + '</span>',
-            '<div>',
-              '<div class="admin-project-title">' + project.name + '</div>',
-              '<div class="admin-project-school">' + project.schools + '</div>',
-            '</div>',
-          '</div>',
-          '<div class="admin-phases">' + phasesHtml + '</div>',
-        '</div>'
-      ].join("");
+      return '<div>'+
+        '<div class="admin-project-header" style="border-bottom:2px solid '+project.color+'">'+
+          '<span style="font-size:18px">'+project.icon+'</span>'+
+          '<div><div class="admin-project-title">'+project.name+'</div><div class="admin-project-school">'+project.schools+'</div></div>'+
+        '</div>'+
+        '<div class="admin-phases">'+phasesHtml+'</div>'+
+      '</div>';
     }).join("");
-
-    return [
-      '<div class="overlay overlay-scroll" id="adminOverlay" style="display:none">',
-        '<div class="admin-box">',
-          '<div class="admin-header">',
-            '<div>',
-              '<div class="admin-header-title">Admin Panel</div>',
-              '<div class="admin-header-sub">Update project progress — changes save for all visitors</div>',
-            '</div>',
-            '<button class="close-btn" id="adminCloseBtn">✕</button>',
-          '</div>',
-          '<div class="admin-body" id="adminBody">' + projectsHtml + '</div>',
-          '<div class="admin-footer">',
-            '<span class="save-status" id="saveStatus"></span>',
-            '<button class="btn btn-secondary" id="adminCancelBtn">Cancel</button>',
-            '<button class="btn btn-primary" id="adminSaveBtn">Save Changes</button>',
-          '</div>',
-        '</div>',
-      '</div>'
-    ].join("");
+    return '<div class="overlay overlay-scroll" id="adminOverlay" style="display:none">'+
+      '<div class="admin-box">'+
+        '<div class="admin-header">'+
+          '<div><div class="admin-header-title">Admin Panel</div><div class="admin-header-sub">Update project progress — changes save for all visitors</div></div>'+
+          '<button class="close-btn" id="adminCloseBtn">✕</button>'+
+        '</div>'+
+        '<div class="admin-body" id="adminBody">'+projectsHtml+'</div>'+
+        '<div class="admin-footer">'+
+          '<span class="save-status" id="saveStatus"></span>'+
+          '<button class="btn btn-secondary" id="adminCancelBtn">Cancel</button>'+
+          '<button class="btn btn-primary" id="adminSaveBtn">Save Changes</button>'+
+        '</div>'+
+      '</div>'+
+    '</div>';
   }
 
-  // ════════════════════════════════════════════════════════
-  // EVENTS
-  // ════════════════════════════════════════════════════════
+  // ── Events ────────────────────────────────────────────────
   function attachEvents() {
-    // Open login
-    var openBtn = document.getElementById("openLoginBtn");
-    if (openBtn) openBtn.addEventListener("click", function() {
-      document.getElementById("loginOverlay").style.display = "flex";
-      setTimeout(function() { document.getElementById("loginPwInput").focus(); }, 50);
-    });
-
-    // Login cancel
-    var cancelBtn = document.getElementById("loginCancelBtn");
-    if (cancelBtn) cancelBtn.addEventListener("click", closeLogin);
-
-    // Login submit
-    var submitBtn = document.getElementById("loginSubmitBtn");
-    if (submitBtn) submitBtn.addEventListener("click", attemptLogin);
-
-    // Login enter key
-    var pwInput = document.getElementById("loginPwInput");
-    if (pwInput) pwInput.addEventListener("keydown", function(e) {
-      if (e.key === "Enter") attemptLogin();
-    });
-
-    // Admin close / cancel
-    var adminClose  = document.getElementById("adminCloseBtn");
-    var adminCancel = document.getElementById("adminCancelBtn");
-    if (adminClose)  adminClose.addEventListener("click",  closeAdmin);
-    if (adminCancel) adminCancel.addEventListener("click", closeAdmin);
-
-    // Admin save
-    var saveBtn = document.getElementById("adminSaveBtn");
-    if (saveBtn) saveBtn.addEventListener("click", handleSave);
-
-    // Admin field changes (status selects, pct sliders, note inputs)
-    var adminBody = document.getElementById("adminBody");
-    if (adminBody) {
-      adminBody.addEventListener("change", function(e) {
-        var el = e.target;
-        var key   = el.dataset.key;
-        var field = el.dataset.field;
-        if (!key || !field) return;
-        if (!adminDraft[key]) adminDraft[key] = JSON.parse(JSON.stringify(STATE.progress[key] || { status:"not_started", pct:0, note:"" }));
-        adminDraft[key][field] = field === "pct" ? parseInt(el.value) : el.value;
-        // show/hide pct slider
-        if (field === "status") {
-          var pctRow = document.getElementById("pctRow_" + key);
-          if (pctRow) pctRow.style.display = el.value === "in_progress" ? "flex" : "none";
-        }
+    var el;
+    el=document.getElementById("openLoginBtn");   if(el) el.addEventListener("click",function(){ document.getElementById("loginOverlay").style.display="flex"; setTimeout(function(){document.getElementById("loginPwInput").focus();},50); });
+    el=document.getElementById("loginCancelBtn"); if(el) el.addEventListener("click",closeLogin);
+    el=document.getElementById("loginSubmitBtn"); if(el) el.addEventListener("click",attemptLogin);
+    el=document.getElementById("loginPwInput");   if(el) el.addEventListener("keydown",function(e){if(e.key==="Enter")attemptLogin();});
+    el=document.getElementById("adminCloseBtn");  if(el) el.addEventListener("click",closeAdmin);
+    el=document.getElementById("adminCancelBtn"); if(el) el.addEventListener("click",closeAdmin);
+    el=document.getElementById("adminSaveBtn");   if(el) el.addEventListener("click",handleSave);
+    var body=document.getElementById("adminBody");
+    if(body){
+      body.addEventListener("change",function(e){
+        var t=e.target, key=t.dataset.key, field=t.dataset.field;
+        if(!key||!field) return;
+        if(!adminDraft[key]) adminDraft[key]=JSON.parse(JSON.stringify(STATE.progress[key]||{status:"not_started",pct:0,note:""}));
+        adminDraft[key][field]=field==="pct"?parseInt(t.value):t.value;
+        if(field==="status"){var pr=document.getElementById("pctRow_"+key);if(pr)pr.style.display=t.value==="in_progress"?"flex":"none";}
       });
-      adminBody.addEventListener("input", function(e) {
-        var el = e.target;
-        var key   = el.dataset.key;
-        var field = el.dataset.field;
-        if (!key || !field) return;
-        if (!adminDraft[key]) adminDraft[key] = JSON.parse(JSON.stringify(STATE.progress[key] || { status:"not_started", pct:0, note:"" }));
-        if (field === "pct") {
-          adminDraft[key].pct = parseInt(el.value);
-          var valEl = document.getElementById("pctVal_" + key);
-          if (valEl) valEl.textContent = el.value + "%";
-        }
-        if (field === "note") {
-          adminDraft[key].note = el.value;
-        }
+      body.addEventListener("input",function(e){
+        var t=e.target, key=t.dataset.key, field=t.dataset.field;
+        if(!key||!field) return;
+        if(!adminDraft[key]) adminDraft[key]=JSON.parse(JSON.stringify(STATE.progress[key]||{status:"not_started",pct:0,note:""}));
+        if(field==="pct"){adminDraft[key].pct=parseInt(t.value);var v=document.getElementById("pctVal_"+key);if(v)v.textContent=t.value+"%";}
+        if(field==="note") adminDraft[key].note=t.value;
       });
     }
   }
 
-  var adminDraft = {};
-
-  function attemptLogin() {
-    var pw = document.getElementById("loginPwInput").value;
-    var errEl = document.getElementById("loginError");
-    var inputEl = document.getElementById("loginPwInput");
-    if (pw === ADMIN_PASSWORD) {
-      closeLogin();
-      openAdmin();
-    } else {
-      inputEl.classList.add("error");
-      errEl.style.display = "block";
-      setTimeout(function() {
-        inputEl.classList.remove("error");
-        errEl.style.display = "none";
-        inputEl.value = "";
-        inputEl.focus();
-      }, 2000);
+  function attemptLogin(){
+    var pw=document.getElementById("loginPwInput").value;
+    if(pw===ADMIN_PASSWORD){ closeLogin(); openAdmin(); }
+    else{
+      var inp=document.getElementById("loginPwInput"), err=document.getElementById("loginError");
+      inp.classList.add("error"); err.style.display="block";
+      setTimeout(function(){inp.classList.remove("error");err.style.display="none";inp.value="";inp.focus();},2000);
     }
   }
+  function closeLogin(){ var e=document.getElementById("loginOverlay");if(e)e.style.display="none";var p=document.getElementById("loginPwInput");if(p)p.value=""; }
+  function openAdmin(){ adminDraft=JSON.parse(JSON.stringify(STATE.progress));var e=document.getElementById("adminOverlay");if(e){e.style.display="flex";e.scrollTop=0;} }
+  function closeAdmin(){ var e=document.getElementById("adminOverlay");if(e)e.style.display="none";adminDraft={};var s=document.getElementById("saveStatus");if(s)s.textContent=""; }
 
-  function closeLogin() {
-    var el = document.getElementById("loginOverlay");
-    if (el) { el.style.display = "none"; }
-    var pw = document.getElementById("loginPwInput");
-    if (pw) pw.value = "";
-  }
-
-  function openAdmin() {
-    // Initialise draft from current state
-    adminDraft = JSON.parse(JSON.stringify(STATE.progress));
-    var el = document.getElementById("adminOverlay");
-    if (el) el.style.display = "flex";
-    el.scrollTop = 0;
-  }
-
-  function closeAdmin() {
-    var el = document.getElementById("adminOverlay");
-    if (el) el.style.display = "none";
-    adminDraft = {};
-    var status = document.getElementById("saveStatus");
-    if (status) status.textContent = "";
-  }
-
-  function handleSave() {
-    var saveBtn    = document.getElementById("adminSaveBtn");
-    var saveStatus = document.getElementById("saveStatus");
-    saveBtn.disabled = true;
-    saveBtn.textContent = "Saving…";
-    saveStatus.textContent = "";
-
-    // Merge draft over current state
-    var merged = JSON.parse(JSON.stringify(STATE.progress));
-    Object.keys(adminDraft).forEach(function(k) { merged[k] = adminDraft[k]; });
-
-    saveProgress(merged, function(ok) {
-      saveBtn.disabled = false;
-      if (ok) {
-        saveBtn.textContent = "✓ Saved!";
-        saveBtn.className = "btn btn-success";
-        setTimeout(function() {
-          closeAdmin();
-          render(); // re-render public view with new data
-        }, 1200);
+  function handleSave(){
+    var saveBtn=document.getElementById("adminSaveBtn");
+    var saveStatus=document.getElementById("saveStatus");
+    saveBtn.disabled=true; saveBtn.textContent="Saving…"; saveStatus.textContent="";
+    var merged=JSON.parse(JSON.stringify(STATE.progress));
+    Object.keys(adminDraft).forEach(function(k){merged[k]=adminDraft[k];});
+    saveProgress(merged,function(ok){
+      saveBtn.disabled=false;
+      if(ok){
+        saveBtn.textContent="✓ Saved!"; saveBtn.className="btn btn-success";
+        setTimeout(function(){closeAdmin();render();},1200);
       } else {
-        saveBtn.textContent = "Save Changes";
-        saveBtn.className = "btn btn-primary";
-        saveStatus.textContent = "⚠️ Save failed — check your connection and try again.";
-        saveStatus.style.color = "#ef4444";
+        saveBtn.textContent="Save Changes"; saveBtn.className="btn btn-primary";
+        saveStatus.textContent="⚠️ Save failed — check your connection and try again.";
+        saveStatus.style.color="#ef4444";
       }
     });
   }
 
-  // ════════════════════════════════════════════════════════
-  // UTILS
-  // ════════════════════════════════════════════════════════
-  function formatDate(iso) {
-    try {
-      return new Date(iso).toLocaleDateString("en-US", {
-        month: "long", day: "numeric", year: "numeric",
-        hour: "numeric", minute: "2-digit"
-      });
-    } catch(e) { return iso; }
-  }
+  function formatDate(iso){ try{return new Date(iso).toLocaleDateString("en-US",{month:"long",day:"numeric",year:"numeric",hour:"numeric",minute:"2-digit"});}catch(e){return iso;} }
+  function esc(s){ return (s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 
-  function escHtml(str) {
-    return (str || "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
-  }
-
-  // ── Boot ─────────────────────────────────────────────────
-  window.addEventListener("DOMContentLoaded", function() {
-    render(); // show loading state immediately
-    loadProgress();
-  });
+  window.addEventListener("DOMContentLoaded",function(){ render(); loadProgress(); });
 </script>
-
 <div id="app">
-  <div class="loading">
-    <div class="loading-icon">🏫</div>
-    <div class="spinner"></div>
-    <div>Loading dashboard…</div>
-  </div>
+  <div class="loading"><div class="loading-icon">🏫</div><div class="spinner"></div><div>Loading dashboard…</div></div>
 </div>
-
 </body>
 </html>
